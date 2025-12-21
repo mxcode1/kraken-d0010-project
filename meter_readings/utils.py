@@ -19,3 +19,26 @@ def get_sample_files():
 def get_sample_file_path(filename):
     """Get full path to a sample file."""
     return Path(settings.BASE_DIR) / "sample_data" / filename
+
+
+def clear_all_data():
+    """
+    Clear all meter reading data from database.
+    WARNING: This is destructive and cannot be undone.
+    """
+    from .models import Reading, Meter, MeterPoint, FlowFile
+
+    count = {
+        "readings": Reading.objects.count(),
+        "meters": Meter.objects.count(),
+        "meter_points": MeterPoint.objects.count(),
+        "flow_files": FlowFile.objects.count(),
+    }
+
+    # Delete in correct order (respect foreign keys)
+    Reading.objects.all().delete()
+    Meter.objects.all().delete()
+    MeterPoint.objects.all().delete()
+    FlowFile.objects.all().delete()
+
+    return count
