@@ -30,7 +30,7 @@ python manage.py migrate
 python manage.py createsuperuser
 
 # 4. Start server
-python manage.py runserver 8001
+python manage.py runserver 8001  # Port 8001 to avoid conflicts
 ```
 
 **Or use the one-command demo launcher:**
@@ -123,7 +123,7 @@ python manage.py import_d0010 sample_data/test.uff --dry-run
 
 ```bash
 # Development (SQLite)
-python manage.py runserver 8001
+python manage.py runserver 8001  # Port 8001 to avoid conflicts
 
 # Production (PostgreSQL)
 export USE_POSTGRESQL=1
@@ -131,7 +131,7 @@ export DB_NAME=kraken_d0010
 export DB_USER=postgres
 export DB_PASSWORD=yourpassword
 python manage.py migrate
-python manage.py runserver 8001
+python manage.py runserver 8001  # Port 8001 to avoid conflicts
 ```
 
 ## Deployment
